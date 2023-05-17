@@ -1,18 +1,8 @@
 trigger:
 - main
 
-strategy:
-  matrix:
-    jdk10_linux:
-      imageName: "ubuntu-latest"
-      jdkVersion: "1.10"
-    jdk11_windows:
-      imageName: "windows-latest"
-      jdkVersion: "1.11"
-  maxParallel: 2
-
 pool:
-  vmImage: $(imageName)
+  vmImage: windows-latest
 
 steps:
 - task: Maven@4
@@ -20,7 +10,7 @@ steps:
     mavenPomFile: "pom.xml"
     mavenOptions: "-Xmx3072m"
     javaHomeOption: "JDKVersion"
-    jdkVersionOption: $(jdkVersion)
+    jdkVersionOption: "1.11"
     jdkArchitectureOption: "x64"
     publishJUnitResults: true
     testResultsFiles: "**/TEST-*.xml"
